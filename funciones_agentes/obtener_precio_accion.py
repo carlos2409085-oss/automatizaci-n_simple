@@ -2,6 +2,10 @@
 # misma que permite seleccionar elementos de una página web
 # por medio de selectores CSS.
 from selenium.webdriver.common.by import By
+import time
+import random
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # Función para obtener el precio de una acción
 # Parámetros:
@@ -13,6 +17,8 @@ def obtener_precio_accion(driver, consulta):
 
     # Bloque try-except para manejar errores
     try:
+
+
         # Obtener el nombre completo de la emprea
         empresa = driver.find_element(By.CSS_SELECTOR, "div[class='PZPZlf ssJ7i B5dxMb']").text
 
@@ -20,11 +26,11 @@ def obtener_precio_accion(driver, consulta):
         precio = driver.find_element(By.CSS_SELECTOR, "span[jsname='vWLAgc']").text
 
         # Obtener la divisa de la acción
-        divisa = 
+        divisa = driver.find_element(By.CSS_SELECTOR, "span[jsname='T3Us2d']").text
 
         # Obtener el ticker de la acción. Éste es el código que se usa para identificar la acción en la bolsa. Por ejemplo, el ticker de Apple es AAPL.
-        ticker = 
-        
+        ticker = driver.find_element(By.CSS_SELECTOR, "div[class='iAIpCb PZPZlf']").text
+
         return f"{empresa} [{ticker}]  ${precio} {divisa.upper()}."
     except Exception as e:
         return "No se pudo obtener el precio de la acción en este momento."
